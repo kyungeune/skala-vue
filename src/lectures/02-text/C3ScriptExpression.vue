@@ -2,6 +2,7 @@
   <div>
     <p>{{ 1 + 2 }}</p>
     <p>{{ message + '님 환영합니다!' }}</p>
+    <p>{{ message }} 님 환영합니다! </p>
     <p>{{ price * quantity }}원</p>
     <p>{{ isLogin ? '로그인' : '로그아웃' }}</p>
   </div>
