@@ -7,5 +7,5 @@
 
 <script setup>
 import { ref } from 'vue'
-const message = ref('')
+const message = ref('안녕')
 </script>
