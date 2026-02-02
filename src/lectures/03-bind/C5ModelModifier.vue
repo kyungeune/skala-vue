@@ -2,11 +2,13 @@
 
   <div>
     <input v-model.trim="message" placeholder="Type something">
-    <p>Trimmed Message: "{{ message }}"</p>
+    <p>Message: "{{ message }}"</p>
+    <p>Trimmed Message: "{{ outputMessage }}"</p>
+    <button @click="trimMessage">눌러주세요.</button>
   </div>
 
   <div>
-    <input v-model.number="age" placeholder="Enter your age">
+    <input v-model.number="age" type="number" placeholder="Enter your age">
     <p>Your age plus 5 is: {{ agePlusFive }}</p>
   </div>
 </template>
@@ -16,6 +18,12 @@
 import { ref, computed } from 'vue';
 
 const message = ref("");
+const outputMessage = ref("");
+
+function trimMessage() {
+  outputMessage.value = message.value.trim();
+}
+
 const age = ref(null);
 
 const agePlusFive = computed(() => {
