@@ -10,7 +10,7 @@
 <script setup>
 import { ref, computed } from 'vue';
 
-const isLoggedIn = ref(false);
+const isLoggedIn = ref(true);
 
 const pageUrl = computed(() => {
   return isLoggedIn.value ? 'https://google.com' : 'https://naver.com';

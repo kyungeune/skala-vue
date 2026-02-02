@@ -31,6 +31,7 @@
       <option value="C">Option C</option>
     </select>
     <p>Selected: {{ message }}</p>
+  </div>
 </template>
 
 <script setup>
