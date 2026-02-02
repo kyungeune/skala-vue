@@ -1,8 +1,8 @@
 <template>
   <h2>객체 렌더링</h2>
   <ul>
-    <li v-for="(value, key, index) in userInfo" :key="key">
-      {{ index + 1 }}. {{ key }}: {{ value }}
+    <li v-for="(value, key, index) in userInfo" :key="index">
+      {{ value }}
     </li>
   </ul>
 </template>

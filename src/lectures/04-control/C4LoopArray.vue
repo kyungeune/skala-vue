@@ -14,6 +14,7 @@ const items = ref([
   { code: 'KR', name: '대한민국' },
   { code: 'US', name: '미국' },
   { code: 'JP', name: '일본' },
-  { code: 'FR', name: '프랑스' }
+  { code: 'FR', name: '프랑스' },
+  { code: 'AR', name: '아르헨티나' }
 ]);
 </script>

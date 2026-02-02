@@ -2,7 +2,7 @@
   <div class="reply-comment">
     <h2>댓글 달기</h2>
 
-    <!-- 댓글 입력 영역 -->
+    <!-- 댓글 입력 영역 (엔터와 버튼클릭 둘 다 허용) -->
     <div class="comment-input">
       <input v-model="newComment" type="text" placeholder="댓글을 입력하세요" @keyup.enter="addComment" />
       <button @click="addComment">등록</button>
@@ -28,6 +28,11 @@ const addComment = () => {
   // 빈 문자열 체크
   if (newComment.value.trim() === '') {
     return;
+  }
+
+  // comments가 3개 이상일 때는 앞부분부터 제거 --> 3개만 유지
+  if (comments.value.length >= 3) {
+    comments.value.shift();
   }
 
   // 새 댓글 추가
