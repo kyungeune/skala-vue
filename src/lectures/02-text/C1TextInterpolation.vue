@@ -3,7 +3,7 @@
     <input v-model="inputValue" placeholder="내용을 입력하세요" />
     <button @click="showMessage">확인</button>
     <div> Message(보간법): {{ message }} </div>
-    <div v-text="message"> Message(디렉티브): </div>
+    <div v-text="message"> </div>
   </div>
 </template>
 
