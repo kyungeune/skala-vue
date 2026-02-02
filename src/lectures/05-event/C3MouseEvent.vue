@@ -1,5 +1,5 @@
 <template>
-  <div @mousemove="handleMouseMove">
+  <div @mousemove="handleMouseMove" @mouseleave="resetMouse">
     마우스를 올려보세요
   </div>
   <p>마우스 좌표: x = {{ mouseX }}, y = {{ mouseY }}</p>
@@ -17,6 +17,10 @@ const handleMouseMove = (event) => {
 }
 
 // 마우스가 div 영역을 벗어났을 때 좌표를 초기화하는 기능 추가
+const resetMouse = () => {
+  mouseX.value = 0
+  mouseY.value = 0
+}
 </script>
 
 <style scoped>

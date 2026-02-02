@@ -1,8 +1,12 @@
 <template>
   <button @click="toggle">Toggle View</button>
-  <div v-if="visible">👀 v-if로 렌더링된 박스</div>
-  <div v-show="visible">🙈 v-show로 렌더링된 박스</div>
+
+  <div v-cloak>
+    <div v-if="visible">👀 v-if로 렌더링된 박스</div>
+    <div v-show="visible">🙈 v-show로 렌더링된 박스</div>
+  </div>
 </template>
+
 
 <script setup>
 import { ref } from 'vue'
@@ -15,6 +19,10 @@ function toggle() {
 </script>
 
 <style scoped>
+[v-cloak] {
+  display: none;
+}
+
 div {
   margin-top: 10px;
   padding: 10px;

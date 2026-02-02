@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p v-once>{{ message }}</p>
+    <p v-once>메시지: {{ message }}</p>
     <button @click="updateMessage">메시지 업데이트</button>
   </div>
 </template>

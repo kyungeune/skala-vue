@@ -1,7 +1,7 @@
 <template>
   <h1>Input 및 Key 이벤트 처리</h1>
 
-  <input @input="handleInput" placeholder="값을 입력하세요" />
+  <input @input="handleInput($event, '값입력')" placeholder="값을 입력하세요" />
   <input @keydown="handleKeyDown" placeholder="키를 눌러보세요" />
 
   <div>
@@ -18,8 +18,8 @@ import { ref } from 'vue'
 const eventInput = ref('')
 const eventKey = ref('')
 
-function handleInput(event) {
-  eventInput.value = `event.target.value: ${event.target.value} `
+function handleInput(event, message) {
+  eventInput.value = `event.target.value: ${event.target.value} ${message}`
 }
 
 function handleKeyDown(event) {
