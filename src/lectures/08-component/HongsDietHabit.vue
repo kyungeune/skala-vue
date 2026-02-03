@@ -19,8 +19,16 @@
 </template>
 
 <script setup>
+/**
+ * 부모 컴포넌트로 이벤트를 보내기 위한 emit 선언
+ * change-weight 이벤트 사용
+ */
 const emit = defineEmits(["change-weight"]);
 
+/**
+ * 체중 변화 이벤트 발생 함수
+ * 부모에게 delta 값을 전달함
+ */
 function emitChange(delta) {
   emit("change-weight", delta);
 }

@@ -29,15 +29,35 @@
 </template>
 
 <script setup>
-// 실습을 위해 변수만 선언
-import { ref, } from 'vue'
+import { ref, computed, watch } from 'vue'
 
 const heightCm = ref(0)
 const weightKg = ref(0)
 const judgment = ref('')
-const bmi = ref(0)
 
+// BMI 계산 (computed) : 키/체중이 바뀌면 자동 재계산
+const bmi = computed(() => {
+  if (heightCm.value === 0 || weightKg.value === 0) return 0
+  const heightM = heightCm.value / 100
+  return weightKg.value / (heightM * heightM)
+})
+
+// BMI 변화 감시 (watch) : BMI 값이 바뀔 때마다 판정 로직 실행
+watch(bmi, (newBmi) => {
+  if (newBmi === 0) {
+    judgment.value = ''
+  } else if (newBmi < 18.5) {
+    judgment.value = '저체중'
+  } else if (newBmi < 23) {
+    judgment.value = '정상'
+  } else if (newBmi < 25) {
+    judgment.value = '과체중 - 다이어트 하세요'
+  } else {
+    judgment.value = '비만 - 다이어트 하세요'
+  }
+})
 </script>
+
 
 <style scoped>
 .bmi-container {
