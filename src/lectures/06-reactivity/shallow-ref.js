@@ -1,6 +1,6 @@
 import { reactive, shallowReactive } from "vue";
 
-const original = reactice({
+const original = reactive({
   name: "홍길동",
   address: {
     city: "서울",
