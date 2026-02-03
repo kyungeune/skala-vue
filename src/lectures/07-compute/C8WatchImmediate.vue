@@ -42,7 +42,7 @@ watch(
     immediateLog.value = `카운터 변경: ${oldVal ?? '초기값'} → ${newVal} (${new Date().toLocaleTimeString()})`
     console.log('카운터 변경 (immediate):', { oldVal, newVal })
   },
-  { immediate: true } // 컴포넌트 마운트 시 즉시 실행
+  { immediate: true, deep: false } // 컴포넌트 마운트 시 즉시 실행
 )
 </script>
 

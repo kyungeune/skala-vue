@@ -29,16 +29,24 @@
 
     <main class="content">
       <div v-if="selectedKey" class="split-view">
-        <div class="panels">
+        <div class="panels" :class="{ 'code-minimized': isCodeMinimized }">
           <div class="code-panel">
             <div class="panel-header">
               <h3>💻 소스 코드</h3>
+              <div>
+                <button v-if="!isCodeMinimized" class="toggle-button" @click="collapseCodePanel" title="소스코드 축소">
+                  <span>⬅</span>
+                </button>
+                <button v-else class="toggle-button" @click="expandCodePanel" title="소스코드 축소">
+                  <span>➡</span>
+                </button>
+              </div>
             </div>
             <pre class="code-editor"><code class="language-vue" v-html="highlightedCode"></code></pre>
           </div>
           <div class="preview-panel">
             <div class="panel-header">
-              <h3>▶️ 실행 결과</h3>
+              <h3>✨ 실행 결과</h3>
             </div>
             <div class="preview-content">
               <component :is="currentComponent" :key="componentKey" />
@@ -62,6 +70,9 @@ import 'highlight.js/styles/github.css';
 
 hljs.registerLanguage('javascript', javascript);
 hljs.registerLanguage('xml', xml);
+
+// 패널 크기 조절 상태
+const isCodeMinimized = ref(false);
 
 const componentsModules = import.meta.glob('./lectures/**/*.vue');
 const rawModules = import.meta.glob('./lectures/**/*.vue', { query: '?raw', import: 'default' });
@@ -151,18 +162,14 @@ const onCodeChange = () => {
   isCodeModified.value = editableCode.value !== sourceCode.value;
 };
 
-const applyChanges = async () => {
-  if (!isCodeModified.value) return;
-  try {
-    const { compile, h } = await import('vue');
-    sourceCode.value = editableCode.value;
-    isCodeModified.value = false;
-    componentKey.value++;
-    console.log('✅ 코드가 적용되었습니다.');
-  } catch (error) {
-    console.error('코드 적용 실패:', error);
-    alert('코드 적용 중 오류가 발생했습니다: ' + error.message);
-  }
+const collapseCodePanel = () => {
+  // 왼쪽 화살표(◀) 클릭 -> 소스코드 축소 (10:90)
+  isCodeMinimized.value = true;
+};
+
+const expandCodePanel = () => {
+  // 오른쪽 화살표(▶) 클릭 -> 소스코드 확대 (50:50)
+  isCodeMinimized.value = false;
 };
 
 watch(selectedFolder, () => {
@@ -262,6 +269,15 @@ select:disabled {
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   width: 100%;
+  transition: grid-template-columns 0.3s ease;
+}
+
+.panels.code-minimized {
+  grid-template-columns: 10% 90%;
+}
+
+.panels.preview-minimized {
+  grid-template-columns: 90% 10%;
 }
 
 .code-panel,
@@ -282,12 +298,40 @@ select:disabled {
   color: white;
   padding: 12px 20px;
   border-bottom: 1px solid #eaeaea;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .panel-header h3 {
   margin: 0;
   font-size: 1rem;
   font-weight: 600;
+}
+
+.toggle-button {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  padding: 2px;
+  font-size: 13px;
+  font-weight: bold;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+}
+
+.toggle-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.toggle-button:active {
+  transform: scale(0.95);
 }
 
 .code-editor {

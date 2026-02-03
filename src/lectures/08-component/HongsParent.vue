@@ -1,10 +1,10 @@
 <template>
   <div class="parent">
-    <h2>홍판서네 자식들</h2>
+    <h2>연흥부네 자식들</h2>
 
     <section class="children">
-      <HongsChild name="홍길동" :assets="assets.forSon" @money="takeMoney" />
-      <HongsChild name="홍길순" :assets="assets.forDaughter" @money="takeMoney" />
+      <HongsChild v-for="child in children" :key="child.name" :name="child.name" :assets="child.assets"
+        @money="takeMoney" />
     </section>
 
     <section class="result">
@@ -22,6 +22,20 @@
 <script setup>
 import { computed, ref } from "vue";
 import HongsChild from "./HongsChild.vue";
+
+// 자식 10명 데이터
+const children = [
+  { name: "첫째", assets: ["이불", "양말"] },
+  { name: "둘째", assets: ["책", "연필"] },
+  { name: "셋째", assets: ["자전거"] },
+  { name: "넷째", assets: ["장난감"] },
+  { name: "다섯째", assets: ["공"] },
+  { name: "여섯째", assets: ["가방"] },
+  { name: "일곱째", assets: ["신발"] },
+  { name: "여덟째", assets: ["모자"] },
+  { name: "아홉째", assets: ["시계"] },
+  { name: "열째", assets: ["노트북"] },
+];
 
 const assets = {
   forSon: ["칼", "창"],

@@ -11,13 +11,15 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { nextTick, ref } from 'vue'
 
 const isVisible = ref(false)
 const inputRef = ref(null)
 
-function showInputBox() {
+async function showInputBox() {
   isVisible.value = true
+
+  await nextTick()  // vue야, DOM 업데이트 다 끝나면 그 다음 줄 실행해줘
   inputRef.value.focus()
 }
 </script>
