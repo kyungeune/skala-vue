@@ -1,12 +1,14 @@
-import { shallowReactive } from "vue";
+import { reactive, shallowReactive } from "vue";
 
-export const userRef = shallowReactive({
+const original = reactice({
   name: "홍길동",
   address: {
     city: "서울",
     zip: "12345",
   },
-});
+})
+
+export const userRef = shallowReactive(original);
 
 export function updateName(newName) {
   userRef.name = newName;
