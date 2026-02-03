@@ -1,12 +1,12 @@
 import { reactive, shallowReactive } from "vue";
 
-const original = reactive({
+const original = {
   name: "홍길동",
   address: {
     city: "서울",
     zip: "12345",
   },
-})
+}
 
 export const userRef = shallowReactive(original);
 
