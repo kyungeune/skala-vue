@@ -11,12 +11,12 @@ import CartPage from './pages/CartPage.vue';
 const routes = [
   // { path: "/", component: DisguiseMain },
   // { path: "/result", component: DisguiseResult },
-  { path: "/", component: LoginPage },
-  { path: "/login", component: LoginPage },
-  { path: "/products", component: ProductListPage },
-  { path: "/products/:id", component: ProductDetailPage },
-  { path: "/cart", component: CartPage },
-  { path: "/:pathMatch(.*)*", redirect: "/" },
+  { path: '/', redirect: { name: 'login' } },
+  { path: '/login', name: 'login', component: LoginPage },
+  { path: '/products', name: 'products', component: ProductListPage },
+  { path: '/products/:id', name: 'productDetail', component: ProductDetailPage },
+  { path: '/cart', name: 'cart', component: CartPage },
+  { path: '/:pathMatch(.*)*', redirect: { name: 'login' } },
 ];
 const router = createRouter({
   history: createWebHistory(),
