@@ -9,13 +9,17 @@
   </div>
 </template>
 <script setup>
-// import { useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 
-// const router = useRouter()
+const router = useRouter()
 
-// function goToDisguise(target) {
-//   // “/disguise?target=호랑이” 형태로 경로 전환
-// }
+function goToDisguise(target) {
+  // "/disguise?target=호랑이" 형태로 경로 전환
+  router.push({
+    path: '/result',
+    query: { target },
+  })
+}
 </script>
 
 <style scoped>

@@ -12,18 +12,19 @@
 
 <script setup>
 import { onMounted, ref } from 'vue'
-// import { useRoute, useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 const target = ref('???')
 
-// const route = useRoute()
-// const router = useRouter()
+const route = useRoute()
+const router = useRouter()
 
-// onMounted(() => {
-//   if (route.query.target) {
-//     target.value = route.query.target
-//     // 브라우저 URL에서 query 부분 제거
-//   }
-// })
+onMounted(() => {
+  if (route.query.target) {
+    target.value = route.query.target
+    // 브라우저 URL에서 query 부분 제거
+    router.replace({ path: route.path })
+  }
+})
 
 </script>
