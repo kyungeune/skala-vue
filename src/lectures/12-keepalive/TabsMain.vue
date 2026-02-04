@@ -11,10 +11,10 @@
     </div>
 
     <div class="tabs-content">
-      <!-- <keep-alive>
+      <keep-alive>
         <component :is="currentTab" />
-      </keep-alive> -->
-      <component :is="currentTab" />
+      </keep-alive>
+      <!-- <component :is="currentTab" /> -->
     </div>
   </div>
 </template>
